@@ -12,7 +12,7 @@ export const STRINGS = {
     details: 'Details',
     humidity: 'Humidity',
     pressure: 'Pressure',
-    windSpeed: 'Wind Speedr',
+    windSpeed: 'Wind Speed',
     cloudCover: 'Cloud Cover',
   },
   UNITS: {
