@@ -6,7 +6,9 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import * as React from 'react';
+import { StatusBar, StyleSheet, useColorScheme, View, Text, Button } from 'react-native';
+import * as Location from './src/location';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -25,6 +27,7 @@ function App() {
 
 function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
+  const [pos, setPos] = React.useState<any | null>(null);
 
   return (
     <View style={styles.container}>
@@ -32,6 +35,16 @@ function AppContent() {
         templateFileName="App.tsx"
         safeAreaInsets={safeAreaInsets}
       />
+      <View style={{padding: 16}}>
+        <Button title="Get Location" onPress={async () => {
+          await Location.requestAuthorization(true);
+          const p = await Location.getCurrentPosition();
+          setPos(p);
+        }} />
+        {pos ? (
+          <Text testID="locationText">{`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`}</Text>
+        ) : null}
+      </View>
     </View>
   );
 }

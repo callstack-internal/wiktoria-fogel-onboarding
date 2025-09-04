@@ -37,5 +37,16 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "codegenConfig": {
+    "name": "WeatherAppCodegenConfig",
+    "type": "all",
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "com.weatherapp"
+    },
+    "ios": {
+      "prefix": "WTHR"
+    }
   }
 }
