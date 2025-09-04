@@ -24,7 +24,7 @@ export default function CityListScreen({ navigation }: CityListScreenProps) {
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" testID={'loading-indicator'} />
       </View>
     );
   }

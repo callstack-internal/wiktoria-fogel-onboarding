@@ -6,6 +6,7 @@ export const WeatherIcon = ({ iconCode }: { iconCode: string }) => {
 
   return (
     <Image
+      testID={'weather-icon'}
       source={{ uri: iconUrl }}
       style={styles.container}
       resizeMode="contain"

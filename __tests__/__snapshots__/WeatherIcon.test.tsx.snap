@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeatherIcon matches snapshot 1`] = `
+<Image
+  resizeMode="contain"
+  source={
+    {
+      "uri": "https://example.com/icon.png",
+    }
+  }
+  style={
+    {
+      "height": 50,
+      "width": 50,
+    }
+  }
+  testID="weather-icon"
+/>
+`;
