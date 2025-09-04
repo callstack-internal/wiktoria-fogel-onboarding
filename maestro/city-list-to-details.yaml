@@ -1,0 +1,14 @@
+# maestro/city-list-to-details.yaml
+appId: com.weatherapp
+
+---
+- launchApp
+- assertVisible:
+    id: 'city-item'
+    index: 0
+- tapOn:
+    id: 'city-item'
+    index: 0
+- assertVisible: 'Humidity'
+- assertVisible: 'Pressure'
+- assertVisible: 'Wind Speed'

@@ -11,6 +11,8 @@ export default function DetailsScreen({ route }: WeatherDetailsScreenProps) {
   return (
     <View style={styles.mainWrapper}>
       <CityWeatherBasicRow
+        testID={'details-header'}
+        accessibilityLabel={'details-header'}
         icon={weatherData.weather[0].icon}
         name={weatherData.name}
         description={weatherData.weather[0].main}

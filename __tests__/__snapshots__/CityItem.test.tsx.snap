@@ -2,6 +2,7 @@
 
 exports[`CityItem matches snapshot 1`] = `
 <View
+  accessibilityLabel="city-item"
   accessibilityState={
     {
       "busy": undefined,

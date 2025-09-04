@@ -22,7 +22,7 @@ exports[`DetailsScreen matches snapshot 1`] = `
     Pressure:1013 hPa
   </Text>
   <Text>
-    Wind Speedr:5 mph
+    Wind Speed:5 mph
   </Text>
   <Text>
     Cloud Cover:20%
