@@ -47,5 +47,13 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "codegenConfig": {
+    "name": "LocationModule",
+    "type": "modules",
+    "jsSrcsDir": "./src/native",
+    "android": {
+      "javaPackageName": "com.weatherapp"
+    }
   }
 }
