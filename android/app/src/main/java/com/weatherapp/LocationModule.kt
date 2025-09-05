@@ -4,19 +4,20 @@ import android.location.Location
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-@ReactModule(name = LocationModule.NAME)
-class LocationModule(reactContext: ReactApplicationContext) : NativeLocationModuleSpec(reactContext), TurboModule {
-  companion object {
-    const val NAME = "LocationModule"
-  }
-
+@ReactModule(name = "LocationModule")
+class LocationModule(reactContext: ReactApplicationContext) : NativeLocationModuleSpec(reactContext) {
   private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(reactContext)
 
-  override fun getName(): String = NAME
+  override fun initialize() {
+    // no-op
+  }
+
+  override fun invalidate() {
+    // no-op
+  }
 
   override fun getCurrentLocation(promise: Promise) {
     fusedLocationClient.lastLocation
