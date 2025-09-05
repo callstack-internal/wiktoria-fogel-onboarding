@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import CityListScreen from '../screens/CityListScreen/CityListScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WeatherDetailsScreen from '../screens/WeatherDetailsScreen/WeatherDetailsScreen';
 import { RootStackParamList } from '../types/navigation';
 import { STRINGS } from '../constants/strings';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
