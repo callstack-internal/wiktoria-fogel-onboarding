@@ -105,6 +105,13 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    sourceSets {
+        main {
+            java.srcDirs += [
+                "$buildDir/generated/source/codegen/java"
+            ]
+        }
+    }
 }
 
 dependencies {

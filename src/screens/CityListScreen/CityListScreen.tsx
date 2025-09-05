@@ -9,9 +9,12 @@ import type {
   RenderItemProps,
 } from './CityListScreen.types';
 import { STRINGS } from '../../constants/strings';
+//import { useLocationQuery } from '../../hook/useUserLocation';
 
 export default function CityListScreen({ navigation }: CityListScreenProps) {
   const { cities, isLoading, error } = useCitiesWeatherById();
+  // const { location } = useLocationQuery();
+  // console.log(location, 'LOCATION');
 
   const onCityPress = async (city: WeatherType) => {
     navigation.navigate('WeatherDetails', { weatherData: city });

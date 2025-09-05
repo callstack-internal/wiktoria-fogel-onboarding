@@ -5,17 +5,18 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
 import com.google.android.gms.location.*
-import org.json.JSONObject
 
-class NativeLocationServiceModule(reactContext: ReactApplicationContext) :
-    NativeLocationServiceSpec(reactContext) {
+class NativeLocationServiceModule(
+    reactContext: ReactApplicationContext
+) : NativeLocationServiceSpec(reactContext) {
 
     private val fusedLocationClient: FusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(reactContext)
 
-    override fun getName(): String = NAME
+    override fun getName(): String = "NativeLocationService"
 
     override fun getCurrentLocationDetails(promise: Promise) {
         val currentActivity = currentActivity ?: run {
@@ -37,34 +38,27 @@ class NativeLocationServiceModule(reactContext: ReactApplicationContext) :
             return
         }
 
-        val locationRequest = LocationRequest.create().apply {
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = 1000
-            fastestInterval = 500
-            numUpdates = 1
-        }
+        val locationRequest = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY, 1000
+        ).setMinUpdateIntervalMillis(500)
+            .setMaxUpdates(1)
+            .build()
 
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 fusedLocationClient.removeLocationUpdates(this)
-
                 val location: Location? = locationResult.lastLocation
                 if (location != null) {
-                    try {
-                        val locationJson = JSONObject().apply {
-                            put("latitude", location.latitude)
-                            put("longitude", location.longitude)
-                            put("altitude", location.altitude)
-                            put("horizontalAccuracy", location.accuracy)
-                            put("verticalAccuracy", if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-                                location.verticalAccuracyMeters else 0f)
-                            put("timestamp", location.time.toString())
-                        }
-
-                        promise.resolve(locationJson.toString())
-                    } catch (e: Exception) {
-                        promise.reject("JSON_ERROR", "Failed to create JSON", e)
-                    }
+                    val result = mapOf(
+                        "latitude" to location.latitude,
+                        "longitude" to location.longitude,
+                        "altitude" to location.altitude,
+                        "horizontalAccuracy" to location.accuracy,
+                        "verticalAccuracy" to if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+                            location.verticalAccuracyMeters else 0f,
+                        "timestamp" to location.time.toString()
+                    )
+                    promise.resolve(result)
                 } else {
                     promise.reject("LOCATION_ERROR", "Failed to get location")
                 }
