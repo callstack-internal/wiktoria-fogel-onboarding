@@ -5,8 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
-import com.facebook.react.bridge.Promise
-import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.*
 import com.google.android.gms.location.*
 
 class NativeLocationServiceModule(
@@ -24,6 +23,7 @@ class NativeLocationServiceModule(
             return
         }
 
+        // sprawdzenie uprawnień
         if (ActivityCompat.checkSelfPermission(
                 reactApplicationContext,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -40,7 +40,8 @@ class NativeLocationServiceModule(
 
         val locationRequest = LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY, 1000
-        ).setMinUpdateIntervalMillis(500)
+        )
+            .setMinUpdateIntervalMillis(500)
             .setMaxUpdates(1)
             .build()
 
@@ -48,17 +49,27 @@ class NativeLocationServiceModule(
             override fun onLocationResult(locationResult: LocationResult) {
                 fusedLocationClient.removeLocationUpdates(this)
                 val location: Location? = locationResult.lastLocation
+
                 if (location != null) {
-                    val result = mapOf(
-                        "latitude" to location.latitude,
-                        "longitude" to location.longitude,
-                        "altitude" to location.altitude,
-                        "horizontalAccuracy" to location.accuracy,
-                        "verticalAccuracy" to if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-                            location.verticalAccuracyMeters else 0f,
-                        "timestamp" to location.time.toString()
-                    )
-                    promise.resolve(result)
+                    try {
+                        val result = Arguments.createMap().apply {
+                            putDouble("latitude", location.latitude)
+                            putDouble("longitude", location.longitude)
+                            putDouble("altitude", location.altitude)
+                            putDouble("horizontalAccuracy", location.accuracy.toDouble())
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O &&
+                                location.hasVerticalAccuracy()
+                            ) {
+                                putDouble("verticalAccuracy", location.verticalAccuracyMeters.toDouble())
+                            } else {
+                                putDouble("verticalAccuracy", 0.0)
+                            }
+                            putString("timestamp", location.time.toString())
+                        }
+                        promise.resolve(result)
+                    } catch (e: Exception) {
+                        promise.reject("LOCATION_PARSING_ERROR", e.message, e)
+                    }
                 } else {
                     promise.reject("LOCATION_ERROR", "Failed to get location")
                 }
