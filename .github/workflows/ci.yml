@@ -23,3 +23,19 @@ jobs:
 
       - name: Run tests
         run: npm test -- --updateSnapshot
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Install fastlane via bundler
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Run fastlane hello (iOS)
+        run: bundle exec fastlane ios hello
+
+      - name: Run fastlane hello (Android)
+        run: bundle exec fastlane android hello
