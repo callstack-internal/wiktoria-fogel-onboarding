@@ -23,7 +23,6 @@ class NativeLocationServiceModule(
             return
         }
 
-        // sprawdzenie uprawnień
         if (ActivityCompat.checkSelfPermission(
                 reactApplicationContext,
                 Manifest.permission.ACCESS_FINE_LOCATION
