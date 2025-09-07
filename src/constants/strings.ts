@@ -6,6 +6,7 @@ export const STRINGS = {
     dataDownloadErrorWithLocation:
       'Error downloading weather data with location',
     failedLoadCities: 'Failed to load cities.',
+    noResults: 'No cities.',
   },
   LABELS: {
     weather: 'Weather',
@@ -14,6 +15,7 @@ export const STRINGS = {
     pressure: 'Pressure',
     windSpeed: 'Wind Speed',
     cloudCover: 'Cloud Cover',
+    searchBarPlaceholder: 'Search for a city...',
   },
   UNITS: {
     temperature: '°C',

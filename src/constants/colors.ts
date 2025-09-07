@@ -8,4 +8,5 @@ export const COLORS = {
   border: '#E4E8EA',
   secondaryText: '#353342',
   error: '#8B0000',
+  placeholder: '#A9A9A9',
 };
