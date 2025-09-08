@@ -15,11 +15,9 @@ export const CityItem = ({ item, onPress }: CityItemProps) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => onPress(item)}
-      testID={'city-item'}
       accessibilityLabel={'city-item'}
     >
       <CityWeatherBasicRow
-        testID={'city-item'}
         accessibilityLabel={'city-item'}
         icon={weather[0].icon}
         name={name}

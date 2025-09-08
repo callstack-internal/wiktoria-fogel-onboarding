@@ -43,7 +43,10 @@ export default function CityListScreen({ navigation }: CityListScreenProps) {
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" testID={'loading-indicator'} />
+        <ActivityIndicator
+          size="large"
+          accessibilityLabel={'loading-indicator'}
+        />
       </View>
     );
   }

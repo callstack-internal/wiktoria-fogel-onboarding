@@ -176,8 +176,8 @@ exports[`CityListScreen renders loading state: loading state 1`] = `
   }
 >
   <ActivityIndicator
+    accessibilityLabel="loading-indicator"
     size="large"
-    testID="loading-indicator"
   />
 </View>
 `;

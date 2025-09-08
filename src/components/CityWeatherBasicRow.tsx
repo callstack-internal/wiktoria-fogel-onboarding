@@ -4,7 +4,6 @@ import { STRINGS } from '../constants/strings';
 import { WeatherIcon } from './WeatherIcon';
 
 type CityWeatherBasicRowProps = {
-  testID: string;
   name: string;
   temperature: number;
   description: string;
@@ -17,15 +16,10 @@ export const CityWeatherBasicRow = ({
   temperature,
   description,
   icon,
-  testID,
   accessibilityLabel,
 }: CityWeatherBasicRowProps) => {
   return (
-    <View
-      testID={testID}
-      style={styles.wrapper}
-      accessibilityLabel={accessibilityLabel}
-    >
+    <View style={styles.wrapper} accessibilityLabel={accessibilityLabel}>
       <View style={styles.row}>
         <WeatherIcon iconCode={icon} />
         <View>
