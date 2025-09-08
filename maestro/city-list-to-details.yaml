@@ -3,12 +3,8 @@ appId: com.weatherapp
 
 ---
 - launchApp
-- assertVisible:
-    id: 'city-item'
-    index: 0
-- tapOn:
-    id: 'city-item'
-    index: 0
+- assertVisible: 'city-item'
+- tapOn: 'city-item'
 - assertVisible: 'Humidity'
 - assertVisible: 'Pressure'
 - assertVisible: 'Wind Speed'

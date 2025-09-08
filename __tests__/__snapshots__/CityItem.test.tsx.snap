@@ -39,7 +39,6 @@ exports[`CityItem matches snapshot 1`] = `
       "paddingHorizontal": 12,
     }
   }
-  testID="city-item"
 >
   <Text>
     Warsaw-Clear-21.7-01d

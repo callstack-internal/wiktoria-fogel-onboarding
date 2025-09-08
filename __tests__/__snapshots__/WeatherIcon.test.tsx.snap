@@ -2,6 +2,7 @@
 
 exports[`WeatherIcon matches snapshot 1`] = `
 <Image
+  accessibilityLabel="weather_icon"
   resizeMode="contain"
   source={
     {
@@ -14,6 +15,5 @@ exports[`WeatherIcon matches snapshot 1`] = `
       "width": 50,
     }
   }
-  testID="weather-icon"
 />
 `;
