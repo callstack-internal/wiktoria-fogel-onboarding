@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WetherDatilRow matches snapshot 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "borderBottomColor": "#E4E8EA",
+      "borderBottomWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "paddingVertical": 16,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "flex": 1,
+        "fontSize": 16,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Humidity
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#353342",
+        "fontSize": 16,
+        "fontWeight": "400",
+      }
+    }
+  >
+    65%
+  </Text>
+</View>
+`;

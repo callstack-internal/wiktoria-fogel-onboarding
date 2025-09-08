@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CityListScreen renders cities list and navigates on press: success state with city 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#70566D",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "paddingHorizontal": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <TextInput
+      autoCapitalize="none"
+      autoCorrect={false}
+      clearButtonMode="while-editing"
+      onChangeText={[Function]}
+      placeholder="Search for a city..."
+      placeholderTextColor="#A9A9A9"
+      style={
+        {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "paddingHorizontal": 12,
+          "paddingVertical": 10,
+        }
+      }
+      value=""
+    />
+  </View>
+  <RCTScrollView
+    ListEmptyComponent={[Function]}
+    contentContainerStyle={
+      {
+        "padding": 16,
+      }
+    }
+    data={
+      [
+        {
+          "id": 1,
+          "main": {
+            "temp": 22,
+          },
+          "name": "Warsaw",
+          "weather": [
+            {
+              "description": "clear sky",
+              "icon": "01d",
+              "id": 800,
+              "main": "Clear",
+            },
+          ],
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          testID="city-item"
+        >
+          <Text>
+            Warsaw
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CityListScreen renders error state: error state 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#70566D",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 10,
+        "marginHorizontal": 16,
+        "padding": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#8B0000",
+          "fontWeight": 600,
+        }
+      }
+    >
+      Failed to load cities.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`CityListScreen renders loading state: loading state 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#70566D",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <ActivityIndicator
+    size="large"
+    testID="loading-indicator"
+  />
+</View>
+`;

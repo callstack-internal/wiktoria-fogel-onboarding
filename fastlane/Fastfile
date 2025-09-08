@@ -1,0 +1,38 @@
+default_platform(:android)
+
+platform :android do
+  desc "Test lane"
+  lane :hello do
+    puts "Fastlane with Androida!"
+  end
+
+  desc "Build APK (debug)"
+  lane :build do
+    gradle(
+      task: "assemble",
+      build_type: "Debug",
+      project_dir: "android"
+    )
+  end
+end
+
+platform :ios do
+  desc "Test lane"
+  lane :hello do
+    puts "Fastlane with iOS!"
+  end
+
+  desc "Build iOS (debug)"
+  lane :build do
+    build_app(
+      workspace: "ios/WeatherApp.xcworkspace",
+      scheme: "WeatherApp",
+      configuration: "Debug",
+      output_directory: "build/ios",
+      skip_codesigning: true,
+      export_method: "development",
+      export_xcargs: "-allowProvisioningUpdates",
+      skip_package_ipa: true 
+    )
+  end
+end

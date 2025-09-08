@@ -1,0 +1,41 @@
+name: React Native CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --updateSnapshot
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+
+      - name: Install fastlane via bundler
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Run fastlane hello (iOS)
+        run: bundle exec fastlane ios hello
+
+      - name: Run fastlane hello (Android)
+        run: bundle exec fastlane android hello
